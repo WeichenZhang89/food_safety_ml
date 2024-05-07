@@ -1,5 +1,5 @@
-# food_safety_ml
-ECS 170 Final Project
+## FoodSafetyAI
+# ECS 170 Final Project
 
 By Zirui Zeng, Weichen Zhang, Xiangchen Kong, Hansheng Huang, & Lily Hu
 
