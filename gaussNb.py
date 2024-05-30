@@ -88,3 +88,5 @@ plt.ylabel('True Label')
 plt.title('Confusion Matrix Heatmap')
 plt.show()
 
+# last two matrix value doesn't show up
+print(mat)
