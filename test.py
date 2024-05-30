@@ -7,7 +7,7 @@ from sklearn.metrics import confusion_matrix
 import seaborn as sns; sns.set()
 
 # Load the data
-data = pd.read_csv('/Users/a12345/Desktop/ECS 170/ECS170 Final Project/mushrooms.csv')
+data = pd.read_csv('./mushrooms.csv')
 
 # Replace categorical values with numerical values
 replace_dict = {
