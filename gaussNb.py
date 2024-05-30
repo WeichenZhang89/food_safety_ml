@@ -3,8 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.naive_bayes import GaussianNB
 from sklearn import metrics
-from sklearn.metrics import confusion_matrix
-import seaborn as sns; sns.set()
+from sklearn.metrics import confusion_matrix, roc_curve, auc
+import seaborn as sns;
 
 # Load the data
 data = pd.read_csv('./mushrooms.csv')
@@ -81,7 +81,24 @@ print(metrics.classification_report(y, model.predict(X)))
 
 # Print the confusion matrix
 mat = confusion_matrix(y, model.predict(X))
+plt.figure(figsize=(8, 6))
+sns.heatmap(mat, annot=True, fmt='d', cmap='Blues', cbar=True, xticklabels=['Poisonous', 'Edible'], yticklabels=['Poisonous', 'Edible'])
+plt.xlabel('Predicted Label')
+plt.ylabel('True Label')
+plt.title('Confusion Matrix Heatmap')
+plt.show()
 
+y_prob = model.predict_proba(X)[:, 1]  # probabilities for the positive class
+fpr, tpr, thresholds = roc_curve(y, y_prob)
+roc_auc = auc(fpr, tpr)
 
-# last two matrix value doesn't show up
-print(mat)
+plt.figure(figsize=(8, 6))
+plt.plot(fpr, tpr, color='darkorange', lw=2, label='ROC curve (area = %0.2f)' % roc_auc)
+plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver Operating Characteristic (ROC) Curve')
+plt.legend(loc="lower right")
+plt.show()
