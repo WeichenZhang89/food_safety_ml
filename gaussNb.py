@@ -46,8 +46,6 @@ X = data[['cap-shape', 'cap-surface', 'cap-color', 'bruises', 'odor', 'gill-atta
           'spore-print-color', 'population', 'habitat']]
 y = data['class']
 
-# Check data types to ensure all are numerical
-print(X.dtypes)
 
 # Build and fit the model
 model = GaussianNB()
@@ -57,8 +55,13 @@ model.fit(X, y)
 rng = np.random.RandomState(0)
 Xnew = 10 * rng.rand(8124, len(X.columns))
 
+# Convert the new random data to a DataFrame with the same column names as X
+Xnew_df = pd.DataFrame(Xnew, columns=X.columns)
+
 # Predict with the model
-ynew = model.predict(Xnew)
+ynew = model.predict(Xnew_df)
+
+# For illustration, plot a scatter plot with the first two features
 plt.figure(figsize=(10, 6))
 plt.scatter(X['cap-shape'], X['cap-surface'], c=y, s=50, cmap='RdBu')
 lim = plt.axis()
@@ -70,7 +73,7 @@ plt.title('Scatter Plot with Predicted Classes')
 plt.show()
 
 # Predict probabilities
-yprob = model.predict_proba(Xnew)  # predicting probabilities for each label
+yprob = model.predict_proba(Xnew_df)  # predicting probabilities for each label
 print(yprob[0:10].round(2))
 
 # Show accuracy 
@@ -78,8 +81,10 @@ print(metrics.classification_report(y, model.predict(X)))
 
 # Print the confusion matrix
 mat = confusion_matrix(y, model.predict(X))
-sns.heatmap(mat.T, square=True, annot=True, fmt='d', cbar=False)
-plt.xlabel('True Label')
-plt.ylabel('Predicted Label')
-plt.title('Confusion Matrix')
+plt.figure(figsize=(8, 6))
+sns.heatmap(mat, annot=True, fmt='d', cmap='Blues', cbar=True, xticklabels=['Poisonous', 'Edible'], yticklabels=['Poisonous', 'Edible'])
+plt.xlabel('Predicted Label')
+plt.ylabel('True Label')
+plt.title('Confusion Matrix Heatmap')
 plt.show()
+
