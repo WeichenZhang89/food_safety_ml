@@ -7,7 +7,7 @@ from sklearn.metrics import confusion_matrix
 import seaborn as sns; sns.set()
 
 # Load the data
-data = pd.read_csv('./mushrooms.csv')
+data = pd.read_csv('/Users/a12345/Desktop/ECS 170/ECS170 Final Project/mushrooms.csv')
 
 # Replace categorical values with numerical values
 replace_dict = {
@@ -46,9 +46,6 @@ X = data[['cap-shape', 'cap-surface', 'cap-color', 'bruises', 'odor', 'gill-atta
           'spore-print-color', 'population', 'habitat']]
 y = data['class']
 
-# Check data types to ensure all are numerical
-print(X.dtypes)
-
 # Build and fit the model
 model = GaussianNB()
 model.fit(X, y)
@@ -57,25 +54,11 @@ model.fit(X, y)
 rng = np.random.RandomState(0)
 Xnew = 10 * rng.rand(8124, len(X.columns))
 
-# Convert the new random data to a DataFrame with the same column names as X
-Xnew_df = pd.DataFrame(Xnew, columns=X.columns)
-
 # Predict with the model
-ynew = model.predict(Xnew_df)
-
-# For illustration, plot a scatter plot with the first two features
-plt.figure(figsize=(10, 6))
-plt.scatter(X['cap-shape'], X['cap-surface'], c=y, s=50, cmap='RdBu')
-lim = plt.axis()
-plt.scatter(Xnew[:, 0], Xnew[:, 1], c=ynew, s=20, cmap='RdBu', alpha=0.3)
-plt.axis(lim)
-plt.xlabel('Cap Shape')
-plt.ylabel('Cap Surface')
-plt.title('Scatter Plot with Predicted Classes')
-plt.show()
+ynew = model.predict(Xnew)
 
 # Predict probabilities
-yprob = model.predict_proba(Xnew_df)  # predicting probabilities for each label
+yprob = model.predict_proba(Xnew)  # predicting probabilities for each label
 print(yprob[0:10].round(2))
 
 # Show accuracy 
@@ -83,8 +66,24 @@ print(metrics.classification_report(y, model.predict(X)))
 
 # Print the confusion matrix
 mat = confusion_matrix(y, model.predict(X))
-sns.heatmap(mat.T, square=True, annot=True, fmt='d', cbar=False)
-plt.xlabel('True Label')
-plt.ylabel('Predicted Label')
-plt.title('Confusion Matrix')
+fig, ax = plt.subplots()
+im = ax.imshow(mat, interpolation='nearest', cmap=plt.cm.Blues)
+ax.figure.colorbar(im, ax=ax)
+ax.set(xticks=np.arange(mat.shape[1]),
+       yticks=np.arange(mat.shape[0]),
+       xticklabels=['Poisonous', 'Edible'], yticklabels=['Poisonous', 'Edible'],
+       title='Confusion Matrix',
+       ylabel='True label',
+       xlabel='Predicted label')
+
+# Rotate the tick labels and set their alignment.
+plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+
+# Loop over data dimensions and create text annotations.
+thresh = mat.max() / 2.
+for i in range(mat.shape[0]):
+    for j in range(mat.shape[1]):
+        ax.text(j, i, mat[i, j],
+                ha="center", va="center",
+                color="white" if mat[i, j] > thresh else "black")
 plt.show()
