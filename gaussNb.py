@@ -81,12 +81,7 @@ print(metrics.classification_report(y, model.predict(X)))
 
 # Print the confusion matrix
 mat = confusion_matrix(y, model.predict(X))
-plt.figure(figsize=(8, 6))
-sns.heatmap(mat, annot=True, fmt='d', cmap='Blues', cbar=True, xticklabels=['Poisonous', 'Edible'], yticklabels=['Poisonous', 'Edible'])
-plt.xlabel('Predicted Label')
-plt.ylabel('True Label')
-plt.title('Confusion Matrix Heatmap')
-plt.show()
+
 
 # last two matrix value doesn't show up
 print(mat)
