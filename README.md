@@ -2,6 +2,7 @@
 ## Mushroom Classification Project
 
 By Zirui Zeng, Weichen Zhang, Xiangchen Kong, Hansheng Huang, & Lily Hu
+Mushroom Dataset from Kaggle https://www.kaggle.com/datasets/uciml/mushroom-classification/data
 
 ## Overview
 
