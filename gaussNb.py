@@ -53,19 +53,19 @@ model.fit(X, y)
 
 # Generate new random data for predictions
 rng = np.random.RandomState(0)
-Xnew = 10 * rng.rand(8124, len(X.columns))
+new_df = 10 * rng.rand(8124, len(X.columns))
 
 # Convert the new random data to a DataFrame with the same column names as X
-Xnew_df = pd.DataFrame(Xnew, columns=X.columns)
+new_df_df = pd.DataFrame(new_df, columns=X.columns)
 
 # Predict with the model
-ynew = model.predict(Xnew_df)
+ynew = model.predict(new_df_df)
 
 # For illustration, plot a scatter plot with the first two features
 plt.figure(figsize=(10, 6))
 plt.scatter(X['cap-shape'], X['cap-surface'], c=y, s=50, cmap='RdBu')
 lim = plt.axis()
-plt.scatter(Xnew[:, 0], Xnew[:, 1], c=ynew, s=20, cmap='RdBu', alpha=0.3)
+plt.scatter(new_df[:, 0], new_df[:, 1], c=ynew, s=20, cmap='RdBu', alpha=0.3)
 plt.axis(lim)
 plt.xlabel('Cap Shape')
 plt.ylabel('Cap Surface')
@@ -73,7 +73,7 @@ plt.title('Scatter Plot with Predicted Classes')
 plt.show()
 
 # Predict probabilities
-yprob = model.predict_proba(Xnew_df)  # predicting probabilities for each label
+yprob = model.predict_proba(new_df_df)  # predicting probabilities for each label
 print(yprob[0:10].round(2))
 
 # Show accuracy 
@@ -102,3 +102,21 @@ plt.ylabel('True Positive Rate')
 plt.title('Receiver Operating Characteristic (ROC) Curve')
 plt.legend(loc="lower right")
 plt.show()
+
+def predict_question(features, feature_values):
+    for feature in features:
+        value = input(f"enter value for {feature} ({list(replace_dict[feature].keys())}): ")
+        feature_values.append(replace_dict[feature][value])
+    new_df = pd.DataFrame([feature_values], columns=features)
+    prediction = model.predict(new_df)
+    if prediction == 1: # we define that in the class, which is used for if editable
+        print("The mushroom is edible.")
+    else:
+        print("The mushroom is poisonous.")
+features = ['cap-shape', 'cap-surface', 'cap-color', 'bruises', 'odor', 'gill-attachment', 
+                'gill-spacing', 'gill-size', 'gill-color', 'stalk-shape', 'stalk-root', 
+                'stalk-surface-above-ring', 'stalk-surface-below-ring', 'stalk-color-above-ring', 
+                'stalk-color-below-ring', 'veil-type', 'veil-color', 'ring-number', 'ring-type', 
+                'spore-print-color', 'population', 'habitat']
+feature_values = [] 
+predict_question(features, feature_values)
