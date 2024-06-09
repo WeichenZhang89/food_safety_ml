@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mushroom Classification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mushroom Classification</h1>
+            <p>By Zirui Zeng, Weichen Zhang, Xiangchen Kong, Hansheng Huang, & Lily Hu</p>
+        </header>
+        <main>
+            <form id="mushroom-form">
+                <div class="form-group">
+                    <label for="cap-shape">Cap Shape (bell=b, conical=c, convex=x, flat=f, knobbed=k, sunken=s):</label>
+                    <input type="text" id="cap-shape" name="cap-shape" placeholder="Please input cap shape" required>
+                </div>
+                <div class="form-group">
+                    <label for="cap-surface">Cap Surface (fibrous=f, grooves=g, scaly=y, smooth=s):</label>
+                    <input type="text" id="cap-surface" name="cap-surface" placeholder="Please input cap surface" required>
+                </div>
+                <div class="form-group">
+                    <label for="cap-color">Cap Color (brown=n, buff=b, cinnamon=c, gray=g, green=r, pink=p, purple=u, red=e, white=w, yellow=y):</label>
+                    <input type="text" id="cap-color" name="cap-color" placeholder="Please input cap color" required>
+                </div>
+                <div class="form-group">
+                    <label for="bruises">Bruises (bruises=t, no=f):</label>
+                    <input type="text" id="bruises" name="bruises" placeholder="Please input bruises" required>
+                </div>
+                <div class="form-group">
+                    <label for="odor">Odor (almond=a, anise=l, creosote=c, fishy=y, foul=f, musty=m, none=n, pungent=p, spicy=s):</label>
+                    <input type="text" id="odor" name="odor" placeholder="Please input odor" required>
+                </div>
+                <div class="form-group">
+                    <label for="gill-attachment">Gill Attachment (attached=a, descending=d, free=f, notched=n):</label>
+                    <input type="text" id="gill-attachment" name="gill-attachment" placeholder="Please input gill attachment" required>
+                </div>
+                <div class="form-group">
+                    <label for="gill-spacing">Gill Spacing (close=c, crowded=w, distant=d):</label>
+                    <input type="text" id="gill-spacing" name="gill-spacing" placeholder="Please input gill spacing" required>
+                </div>
+                <div class="form-group">
+                    <label for="gill-size">Gill Size (broad=b, narrow=n):</label>
+                    <input type="text" id="gill-size" name="gill-size" placeholder="Please input gill size" required>
+                </div>
+                <div class="form-group">
+                    <label for="gill-color">Gill Color (black=k, brown=n, buff=b, chocolate=h, gray=g, green=r, orange=o, pink=p, purple=u, red=e, white=w, yellow=y):</label>
+                    <input type="text" id="gill-color" name="gill-color" placeholder="Please input gill color" required>
+                </div>
+                <!-- Add more fields as needed -->
+                <button type="submit">Classify Mushroom</button>
+            </form>
+            <div id="result"></div>
+        </main>
+        <footer>
+            <p>&copy; 2023 Mushroom Classification Project</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
