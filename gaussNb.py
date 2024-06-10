@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.naive_bayes import GaussianNB
 from sklearn import metrics
-from sklearn.metrics import confusion_matrix, roc_curve, auc
+from sklearn.metrics import confusion_matrix, roc_curve, auc, mean_squared_error
 import seaborn as sns;
 
 # Load the data
@@ -88,7 +88,9 @@ plt.ylabel('True Label')
 plt.title('Confusion Matrix Heatmap')
 plt.show()
 
+y_pred = model.predict(X)
 y_prob = model.predict_proba(X)[:, 1]  # probabilities for the positive class
+
 fpr, tpr, thresholds = roc_curve(y, y_prob)
 roc_auc = auc(fpr, tpr)
 
@@ -120,3 +122,7 @@ features = ['cap-shape', 'cap-surface', 'cap-color', 'bruises', 'odor', 'gill-at
                 'spore-print-color', 'population', 'habitat']
 feature_values = [] 
 predict_question(features, feature_values)
+
+# Calculate and print Mean Squared Error
+mse = mean_squared_error(y, y_pred)
+print(f"++++Mean Squared Error: {mse}")
