@@ -6,6 +6,7 @@ from sklearn import metrics
 from sklearn.metrics import confusion_matrix, roc_curve, auc
 import matplotlib.pyplot as plt
 import seaborn as sns
+import sklearn
 
 data = pd.read_csv('./mushrooms.csv')
 
