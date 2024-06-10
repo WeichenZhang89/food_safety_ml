@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-from sklearn.naive_bayes import GaussianNB, CategoricalNB
+from sklearn.naive_bayes import CategoricalNB
 from sklearn import metrics
 from sklearn.metrics import confusion_matrix, roc_curve, auc
 import matplotlib.pyplot as plt
