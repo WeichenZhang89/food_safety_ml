@@ -53,8 +53,8 @@ y = data['class']
 model = CategoricalNB()
 model.fit(X, y)
 
-st.title("Mushroom Classification")
-st.write("Enter the characteristics of the mushroom to predict if it is edible or poisonous.")
+st.title("Food Safety")
+st.write("Select the option for characteristic")
 
 input_data = {}
 option_des = {
@@ -112,4 +112,4 @@ def add_background(path):
     """
     st.markdown(css, unsafe_allow_html=True)
 
-add_background('./mushroom.jpeg')
+add_background('mushroom_replace.jpeg')
