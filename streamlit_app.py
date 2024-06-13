@@ -95,10 +95,10 @@ if st.button("Predict"):
     prediction = model.predict(input_df)
     prediction_proba = model.predict_proba(input_df)
     if prediction[0] == 1:
-        st.success("The mushroom is edible.")
+        st.success("the mushroom is edible.")
     else:
-        st.error("The mushroom is poisonous.")
-    st.write(f"Prediction probabilities: Edible: {prediction_proba[0][1]:.2f}, Poisonous: {prediction_proba[0][0]:.2f}")
+        st.error("the mushroom is toxic.")
+    st.write(f"prediction probabilities: edible: {prediction_proba[0][1]:.2f}, toxic: {prediction_proba[0][0]:.2f}")
 
 def add_background(path):
     encoded_image = encode_decode_image(path)
