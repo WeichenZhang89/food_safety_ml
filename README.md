@@ -1,4 +1,5 @@
 # 🍄 Food Safety AI
+
 ## Mushroom Classification Project
 
 By Zirui Zeng, Weichen Zhang, Xiangchen Kong, Hansheng Huang, & Lily Hu
@@ -53,3 +54,8 @@ To run this project, you will need:
 - 🐍 Python 3.x
 - 📓 Jupyter Notebook
 - 📦 Libraries: Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn
+
+### How to run the project:
+
+- option1: go to the url:
+- option2: streamlit run streamlit_app.py
