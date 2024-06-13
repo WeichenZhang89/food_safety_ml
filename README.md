@@ -55,6 +55,25 @@ To run this project, you will need:
 - 📓 Jupyter Notebook
 - 📦 Libraries: Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn
 
+### Packages
+The following Python packages are required to run the script:
+
+```bash
+# Install numpy
+pip install numpy
+
+# Install pandas
+pip install pandas
+
+# Install scikit-learn
+pip install scikit-learn
+
+# Install matplotlib
+pip install matplotlib
+
+# Install seaborn
+pip install seaborn
+
 ### How to run the project:
 
 - option1: go to the url:https://foodsafetyml-y2s3hytg2upcjton9ggihs.streamlit.app/
