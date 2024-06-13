@@ -104,25 +104,3 @@ plt.ylabel('True Positive Rate')
 plt.title('Receiver Operating Characteristic (ROC) Curve')
 plt.legend(loc="lower right")
 plt.show()
-
-def predict_question(features, feature_values):
-    for feature in features:
-        value = input(f"enter value for {feature} ({list(replace_dict[feature].keys())}): ")
-        feature_values.append(replace_dict[feature][value])
-    new_df = pd.DataFrame([feature_values], columns=features)
-    prediction = model.predict(new_df)
-    if prediction == 1: # we define that in the class, which is used for if editable
-        print("The mushroom is edible.")
-    else:
-        print("The mushroom is poisonous.")
-features = ['cap-shape', 'cap-surface', 'cap-color', 'bruises', 'odor', 'gill-attachment', 
-                'gill-spacing', 'gill-size', 'gill-color', 'stalk-shape', 'stalk-root', 
-                'stalk-surface-above-ring', 'stalk-surface-below-ring', 'stalk-color-above-ring', 
-                'stalk-color-below-ring', 'veil-type', 'veil-color', 'ring-number', 'ring-type', 
-                'spore-print-color', 'population', 'habitat']
-feature_values = [] 
-predict_question(features, feature_values)
-
-# Calculate and print Mean Squared Error
-mse = mean_squared_error(y, y_pred)
-print(f"++++Mean Squared Error: {mse}")
