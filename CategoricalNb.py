@@ -118,3 +118,13 @@ plt.show()
 # Calculate and print Mean Squared Error
 mse = mean_squared_error(y, y_pred)
 print(f"Mean Squared Error: {mse}")
+
+accuracy = accuracy_score(y, y_pred)
+precision = precision_score(y, y_pred)
+recall = recall_score(y, y_pred)
+f1 = f1_score(y, y_pred)
+
+print(f"Accuracy: {accuracy}")
+print(f"Precision: {precision}")
+print(f"Recall: {recall}")
+print(f"F1-Score: {f1}")
