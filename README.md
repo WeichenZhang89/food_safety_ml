@@ -57,5 +57,5 @@ To run this project, you will need:
 
 ### How to run the project:
 
-- option1: go to the url:
+- option1: go to the url:https://foodsafetyml-y2s3hytg2upcjton9ggihs.streamlit.app/
 - option2: streamlit run streamlit_app.py
